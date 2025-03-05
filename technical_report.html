@@ -165,7 +165,7 @@
 <ul style="font-size: 18px; line-height: 1.6;">
     <li><b>Data Cleaning:</b> Blank incorporation dates, invalid time values (e.g., &quot;00:00:00&quot;), and pre-1900 dates were either corrected or removed.</li>
     <li><b>Turnover Aggregation:</b> Missing turnover values were handled to prevent miscalculations in year-on-year changes.</li>
-    <li><b>Sector-Wise Analysis:</b> &quot;Summary-…&quot; rows aggregating multiple companies were removed to ensure calculations reflected individual company data.</li>
+    <li><b>Sector-Wise Analysis:</b> &quot;Summary-Â…&quot; rows aggregating multiple companies were removed to ensure calculations reflected individual company data.</li>
     <li><b>Python Data Processing:</b> Custom Python scripts were used for predictive modeling, visualizations, and exploratory data analysis.</li>
 </ul>
 
@@ -215,8 +215,8 @@
 <p style="font-size: 18px; line-height: 1.6;">Before conducting any analysis, it was essential to gain a deep understanding of the dataset, its structure, and potential inconsistencies that could affect the validity of results. The dataset consisted of two original sheets:</p>
 
 <ul style="font-size: 18px; line-height: 1.6;">
-    <li><b>Data Dictionary</b> – A reference sheet explaining the meaning of each column in the dataset.</li>
-    <li><b>Data</b> – The main dataset containing company details, turnover values, and other business attributes.</li>
+    <li><b>Data Dictionary</b> Â– A reference sheet explaining the meaning of each column in the dataset.</li>
+    <li><b>Data</b> Â– The main dataset containing company details, turnover values, and other business attributes.</li>
 </ul>
 
 <p style="font-size: 18px; line-height: 1.6;">To ensure a structured and error-free analysis, a copy of the original file was created. This approach ensured that the original dataset remained intact in case any issues arose during processing.</p>
@@ -226,10 +226,10 @@
 <p style="font-size: 18px; line-height: 1.6;">In the newly created document, additional sheets were introduced for better data management and analysis:</p>
 
 <ul style="font-size: 18px; line-height: 1.6;">
-    <li><b>Data(original)</b> – A renamed copy of the original dataset for reference.</li>
-    <li><b>Data(processed)</b> – A duplicate of the dataset where modifications and calculations were performed.</li>
-    <li><b>Reporting</b> – A sheet designated for pivot tables, slicers, cards, and charts.</li>
-    <li><b>Dashboard</b> – A visually structured sheet where final findings, slicers, and visualizations were presented for stakeholders.</li>
+    <li><b>Data(original)</b> Â– A renamed copy of the original dataset for reference.</li>
+    <li><b>Data(processed)</b> Â– A duplicate of the dataset where modifications and calculations were performed.</li>
+    <li><b>Reporting</b> Â– A sheet designated for pivot tables, slicers, cards, and charts.</li>
+    <li><b>Dashboard</b> Â– A visually structured sheet where final findings, slicers, and visualizations were presented for stakeholders.</li>
 </ul>
 
 <p style="font-size: 18px; line-height: 1.6;">To facilitate data manipulation, the following initial steps were performed on the <b>Data(processed)</b> sheet:</p>
@@ -247,7 +247,7 @@
 
 <h4 style="font-size: 20px;">2.2.1 Company Name</h4>
 <ul style="font-size: 18px; line-height: 1.6;">
-    <li>The dataset contained <b>10 rows labeled "Summary-…"</b>, one for each industry.</li>
+    <li>The dataset contained <b>10 rows labeled "Summary-Â…"</b>, one for each industry.</li>
     <li>These rows aggregated data for each sector but were mixed with individual company records.</li>
     <li><b>Potential Issue:</b> Including them in calculations could lead to double-counting when summing turnover values.</li>
     <li><b>Decision:</b> Temporarily kept for validation but later removed after confirming redundancy.</li>
@@ -275,10 +275,10 @@
 
 <h3 id="validation-techniques" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">2.3 Handling Data Cleaning and Preprocessing Decisions</h3>
 
-<h4 style="font-size: 20px;">2.3.1 Validation and Removal of "Summary-…" Rows</h4>
+<h4 style="font-size: 20px;">2.3.1 Validation and Removal of "Summary-Â…" Rows</h4>
 <p><b>Problem:</b></p>
 <ul style="font-size: 18px; line-height: 1.6;">
-    <li>The <b>10 "Summary-…" rows</b> contained aggregated sector data, meaning they duplicated turnover values when included in calculations.</li>
+    <li>The <b>10 "Summary-Â…" rows</b> contained aggregated sector data, meaning they duplicated turnover values when included in calculations.</li>
     <li>If not removed, <b>Pivot Tables and SUM calculations</b> would be inflated due to double-counting.</li>
 </ul>
 
@@ -286,21 +286,21 @@
 
 <h5 style="font-size: 18px;">Step 1: Manual Inspection</h5>
 <ul style="font-size: 18px; line-height: 1.6;">
-    <li>Each "Summary-…" row was checked to verify its impact on sector totals.</li>
+    <li>Each "Summary-Â…" row was checked to verify its impact on sector totals.</li>
 </ul>
 
 <h5 style="font-size: 18px;">Step 2: SUMIFS Validation</h5>
 <ul style="font-size: 18px; line-height: 1.6;">
-    <li>Turnover values in the "Summary-…" rows were compared with manually summed turnover data per sector using:</li>
+    <li>Turnover values in the "Summary-Â…" rows were compared with manually summed turnover data per sector using:</li>
 </ul>
 
 <pre><code class="excel">
 =SUMIFS(O:O, B:B, "Farming", A:A, "&lt;&gt;Summary-Farming")
 </code></pre>
 
-<h5 style="font-size: 18px;">Step 3: Removal of "Summary-…" Rows</h5>
+<h5 style="font-size: 18px;">Step 3: Removal of "Summary-Â…" Rows</h5>
 <ul style="font-size: 18px; line-height: 1.6;">
-    <li>After validation, the 10 "Summary-…" rows were removed, ensuring that only actual company records remained.</li>
+    <li>After validation, the 10 "Summary-Â…" rows were removed, ensuring that only actual company records remained.</li>
 </ul>
 
 <h4 style="font-size: 20px;">2.3.2 Handling Missing Turnover Data</h4>
@@ -354,10 +354,10 @@
 
 <!-- Insert Images for Turnover Analysis -->
 <p><b>Figure 1:</b> Turnover changes in absolute (&pound;) values across sectors.</p>
-<img src="C:/Users/Marcos/Desktop/html/Picture1.png" alt="Greatest Increase & Decrease by &pound;" style="max-width: 80%; height: auto;">
+<img src="https://github.com/Marcosjferreira/technical-report/blob/86537fa144dd39b57a2cafde5f64cbbdccb0dca3/Picture1.png" alt="Greatest Increase & Decrease by &pound;" style="max-width: 80%; height: auto;">
 
 <p><b>Figure 2:</b> Turnover changes in percentage (%) values across sectors.</p>
-<img src="C:/Users/Marcos/Desktop/html/Picture2.png" alt="Greatest Increase & Decrease by %" style="max-width: 80%; height: auto;">
+<img src="https://github.com/Marcosjferreira/technical-report/blob/86537fa144dd39b57a2cafde5f64cbbdccb0dca3/Picture2.png" alt="Greatest Increase & Decrease by %" style="max-width: 80%; height: auto;">
 
 
 <h3 id="yearly-changes" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">3.3 Year-on-Year Turnover Changes</h3>
@@ -422,7 +422,7 @@
 <!-- Section 4: Farming Industry Turnover Analysis -->
 <h2 id="farming-turnover" style="color: #4CAF50; font-size: 24px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">4. Farming Industry Turnover Analysis</h2>
 
-<p style="font-size: 18px; line-height: 1.6;">This section provides a detailed analysis of the farming industry’s turnover across the available years (2020 to 2024), identifying trends, challenges, and insights. The focus was to determine how farming turnover fluctuated and how to accurately calculate year-on-year changes in the presence of missing data and sector-specific issues.</p>
+<p style="font-size: 18px; line-height: 1.6;">This section provides a detailed analysis of the farming industryÂ’s turnover across the available years (2020 to 2024), identifying trends, challenges, and insights. The focus was to determine how farming turnover fluctuated and how to accurately calculate year-on-year changes in the presence of missing data and sector-specific issues.</p>
 
 <h3 id="farming-breakdown" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">4.1 Turnover Breakdown for Farming Industry</h3>
 
@@ -442,7 +442,7 @@
     <li>Filtered farming-related records to isolate turnover data for the target years.</li>
     <li>Used <b>Pivot Tables</b> and <b>SUMIFS</b> functions in Excel to aggregate turnover data across different years.</li>
     <li>Implemented <b>Python-based validation</b> to cross-check the totals dynamically and ensure data integrity.</li>
-    <li>Refined calculations by ensuring that missing values were treated as empty, not £0, in order to prevent misinterpretations.</li>
+    <li>Refined calculations by ensuring that missing values were treated as empty, not Â£0, in order to prevent misinterpretations.</li>
 </ul>
 
 <h3 id="farming-visualization" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">4.3 Visualizing Farming Trends</h3>
@@ -451,7 +451,7 @@
 
 <!-- Insert Farming Turnover Chart -->
 <p><b>Figure 3:</b> Total turnover for the farming industry across years.</p>
-<img src="C:/Users/Marcos/Desktop/html/Picture3.png" alt="Farming Turnover Chart">style="max-width: 60%; height: auto;">
+<img src="https://github.com/Marcosjferreira/technical-report/blob/86537fa144dd39b57a2cafde5f64cbbdccb0dca3/Picture3.png" alt="Farming Turnover Chart">style="max-width: 60%; height: auto;">
 
 <h3 id="farming-chart" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">4.4 Observations & Insights</h3>
 
@@ -513,7 +513,7 @@
 
 <!-- Placeholder for Image 4: Total Incorporation by Month -->
 <p><b>Figure 4:</b> Total Incorporation by Month.</p>
-<img src="C:/Users/Marcos/Desktop/html/Picture4.png" alt="Total Incorporation by Month" style="max-width: 80%; height: auto;">
+<img src="https://github.com/Marcosjferreira/technical-report/blob/86537fa144dd39b57a2cafde5f64cbbdccb0dca3/Picture4.png" alt="Total Incorporation by Month" style="max-width: 80%; height: auto;">
 
 
 <h3 id="industry-trends" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">5.2 Industry-Specific Trends in Incorporation</h3>
@@ -530,7 +530,7 @@
 
 <!-- Placeholder for Image 5: Python Heatmap for Industry Incorporations -->
 <p><b>Figure 5:</b> Python Heatmap for Industry-Specific Incorporations.</p>
-<img src="C:/Users/Marcos/Desktop/html/Picture5.png" alt="Python Heatmap for Industry Incorporations">
+<img src="https://github.com/Marcosjferreira/technical-report/blob/86537fa144dd39b57a2cafde5f64cbbdccb0dca3/Picture5.png" alt="Python Heatmap for Industry Incorporations">
 
 <h4 style="font-size: 18px; line-height: 1.6;">Heatmap Insights:</h4>
 <ul style="font-size: 18px; line-height: 1.6;">
@@ -802,7 +802,7 @@ totals_per_year = df[year_columns].sum().values  # Aggregate totals
 # Plot the total turnover across all countries
 plt.plot(years, totals_per_year, marker='o', linestyle='-', color='b', label="Total Turnover")
 plt.title("Total Turnover Across All Countries (2020-2026)")
-plt.ylabel("All Countries Turnover (£ Billions)")
+plt.ylabel("All Countries Turnover (Â£ Billions)")
 
 # Format y-axis to use Thousands, Millions, or Billions
 plt.gca().yaxis.set_major_formatter(ticker.FuncFormatter(format_ticks))
@@ -840,7 +840,7 @@ plt.show() </b></p>
 </b> <i>(Chart Generation for Total Turnover)</i></p>
 
 <p><b>Figure 6:</b> Total Turnover Across All Countries (2020-2026)</p>
-<img src="C:/Users/Marcos/Desktop/CV/Civil Services Job/Civil Service Interview Prep/Data Analyst - HMRC/Picture6.png" alt="Total Turnover Across All Countries">
+<img src="https://github.com/Marcosjferreira/technical-report/blob/86537fa144dd39b57a2cafde5f64cbbdccb0dca3/Picture6.png" alt="Total Turnover Across All Countries">
 
 <h4 id="top-5-turnover-chart">6.1.3 Python Chart: Top 5 Countries' Turnover (2020-2026)</h4>
 
@@ -893,7 +893,7 @@ uk_percent_change = calculate_percentage_change(uk_turnover)
 
 # Plot the UK turnover on the left y-axis
 ax1.plot(years, uk_turnover, marker='o', linestyle='-', color='blue', label="United Kingdom")
-ax1.set_ylabel("UK Turnover (£ Billions)", color='blue', fontsize=12)
+ax1.set_ylabel("UK Turnover (Â£ Billions)", color='blue', fontsize=12)
 ax1.tick_params(axis='y', labelcolor='blue')
 
 # Format UK turnover axis (Billions)
@@ -954,7 +954,7 @@ for index, row in top_5_countries.iterrows():
         i += 1  # Move to the next color/style
 
 # Format other countries' turnover axis (Millions)
-ax2.set_ylabel("Other Countries Turnover (£ Millions)", color='black', fontsize=12)
+ax2.set_ylabel("Other Countries Turnover (Â£ Millions)", color='black', fontsize=12)
 ax2.tick_params(axis='y', labelcolor='black')
 ax2.yaxis.set_major_formatter(ticker.FuncFormatter(format_ticks))
 ax2.set_ylim(0, 1.8e7)  # Set Other Countries' y-axis bounds
@@ -980,7 +980,7 @@ plt.show()
 
 </b> <i> (Chart Generation for Top 5 Countries)</i></p>
 <p><b>Figure 7:</b> Top 5 Countries' Turnover (2020-2026)</p>
-<img src="C:/Users/Marcos/Desktop/CV/Civil Services Job/Civil Service Interview Prep/Data Analyst - HMRC/Picture7.png" alt="Top 5 Countries Turnover (UK vs Others)">
+<img src="https://github.com/Marcosjferreira/technical-report/blob/86537fa144dd39b57a2cafde5f64cbbdccb0dca3/Picture7.png" alt="Top 5 Countries Turnover (UK vs Others)">
 
 <h3 id="key-insights">6.2 Key Insights</h3>
 
