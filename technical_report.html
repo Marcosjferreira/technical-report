@@ -1,0 +1,1244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 50px;
+            padding-bottom: 20px;
+        }
+        h2 {
+            color: #4CAF50;
+            font-size: 28px;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            color: #333;
+            font-size: 24px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        ul li {
+            margin: 10px 0;
+        }
+        ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        ul li a:hover {
+            background-color: #f0f0f0;
+            color: white;
+        }
+        .section {
+            margin-top: 40px;
+        }
+        .toc {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .toc a {
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Title of the Report -->
+        <h1>Technical Report</h1>
+
+        <!-- Table of Contents -->
+        <div class="section">
+    <h2 style="color: #4CAF50; font-size: 32px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">Table of Contents</h2>
+    <ul style="font-size: 18px; line-height: 1.6;">
+        <li><a href="#executive-summary" style="font-size: 22px; color: #333;font-weight: bold;">1. Executive Summary</a></li>
+        <li><a href="#data-preprocessing" style="font-size: 20px; color: #333;font-weight: bold;">2. Data Exploration and Preprocessing</a>
+            <ul style="font-size: 18px; margin-left: 20px;">
+                <li><a href="#data-understanding" style="color: #333;">Data Understanding</a></li>
+                <li><a href="#structured-environment" style="color: #333;">Creating a Structured Working Environment</a></li>
+                <li><a href="#data-quality" style="color: #333;">Initial Data Quality Assessment</a></li>
+            </ul>
+        </li>
+        <li><a href="#turnover-trends" style="font-size: 20px; color: #333;font-weight: bold;">3. Analyzing Turnover Trends Across Sectors</a>
+            <ul style="font-size: 18px; margin-left: 20px;">
+                <li><a href="#turnover-analysis" style="color: #333;">Turnover Trends Analysis</a></li>
+                <li><a href="#greatest-increase" style="color: #333;">Sectors with Greatest Increase and Decrease in Turnover</a></li>
+                <li><a href="#yearly-changes" style="color: #333;">Year-on-Year Turnover Changes</a>
+                    <ul style="font-size: 18px; margin-left: 20px;">
+                        <li><a href="#calculation-method" style="color: #333;">Calculations and Methodology</a></li>
+                        <li><a href="#refining-calculations" style="color: #333;">Refining the Approach for Year-on-Year Calculation</a></li>
+                    </ul>
+                </li>
+                <li><a href="#turnover-images" style="color: #333;">Turnover Analysis Charts</a></li>
+            </ul>
+        </li>
+        <li><a href="#farming-turnover" style="font-size: 20px; color: #333;font-weight: bold;">4. Farming Industry Turnover Analysis</a>
+            <ul style="font-size: 18px; margin-left: 20px;">
+                <li><a href="#farming-breakdown" style="color: #333;">Turnover Breakdown for Farming Industry</a></li>
+                <li><a href="#farming-methodology" style="color: #333;">Methodology and Approach</a></li>
+                <li><a href="#farming-visualization" style="color: #333;">Visualizing Farming Trends</a></li>
+                <li><a href="#farming-chart" style="color: #333;">Farming Turnover Chart</a></li>
+            </ul>
+        </li>
+        <li><a href="#incorporation-trends" style="font-size: 20px; color: #333;font-weight: bold;">5. Business Incorporation Trends</a>
+            <ul style="font-size: 18px; margin-left: 20px;">
+                <li><a href="#least-common-month" style="color: #333;">Analysis of Least Common Month for Incorporation</a></li>
+                <li><a href="#industry-trends" style="color: #333;">Industry-Specific Trends in Incorporation</a></li>
+                <li><a href="#turnover-by-industry" style="color: #333;">Turnover Trends by Industry</a></li>
+                <li><a href="#heatmap-analysis" style="color: #333;">Python Heatmap for Incorporation Trends</a></li>
+            </ul>
+        </li>
+        <li><a href="#integrated-analysis" style="font-size: 20px; color: #333;font-weight: bold;">6. Integrated Analysis of Turnover and Incorporation Trends</a>
+            <ul style="font-size: 18px; margin-left: 20px;">
+                <li><a href="#python-predictions" style="color: #333;">Python Implementation for Predictions and Visualization</a></li>
+                <li><a href="#key-insights" style="color: #333;">Key Insights</a></li>
+                <li><a href="#challenges" style="color: #333;">Challenges and Solutions</a></li>
+                <li><a href="#data-aggregation" style="color: #333;">Python Data Aggregation (Country-Level Turnover)</a></li>
+                <li><a href="#advanced-analysis" style="color: #333;">Python Advanced Analysis (EDA, Outliers, Correlation, Trends)</a></li>
+                <li><a href="#total-turnover-chart" style="color: #333;">Python Chart: Total Turnover Across All Countries</a></li>
+                <li><a href="#top-5-turnover-chart" style="color: #333;">Python Chart: Top 5 Countries' Turnover (UK vs Others)</a></li>
+            </ul>
+        </li>
+        <li><a href="#technical-implementation" style="font-size: 20px; color: #333;font-weight: bold;">7. Technical Implementation & Automation</a>
+            <ul style="font-size: 18px; margin-left: 20px;">
+                <li><a href="#python-processing" style="color: #333;">Using Python for Data Processing and Validation</a></li>
+                <li><a href="#charts-visualization" style="color: #333;">Generating Charts and Visualizations</a></li>
+                <li><a href="#automation" style="color: #333;">Automating Calculations and Reporting</a></li>
+            </ul>
+        </li>
+        <li><a href="#conclusions" style="font-size: 20px; color: #333;font-weight: bold;">8. Conclusions and Recommendations</a>
+            <ul style="font-size: 18px; margin-left: 20px;">
+                <li><a href="#key-findings" style="color: #333;">Summary of Key Findings</a></li>
+                <li><a href="#geographic-comparisons" style="color: #333;">Geographic and Industry Comparisons</a></li>
+                <li><a href="#future-steps" style="color: #333;">Future Considerations and Next Steps</a></li>
+            </ul>
+        </li>
+    </ul>
+<h2 id="executive-summary" style="color: #4CAF50; font-size: 24px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">1. Executive Summary</h2>
+
+<p style="font-size: 18px; line-height: 1.6;">This report presents an in-depth analysis of company incorporation trends, sector turnover changes, and geographic comparisons based on historical business registration and financial data.</p>
+
+<p style="font-size: 18px; line-height: 1.6;">The objective of this study was to answer the following key questions:</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>Which sectors show the greatest increase and decrease in turnover over the years available?</b></li>
+    <li><b>What is the total turnover for &quot;Farming&quot; broken down by year?</b></li>
+    <li><b>What is the least common month to incorporate a business? Is this true for all company types?</b></li>
+    <li><b>What other conclusions can be drawn from the data, particularly in terms of trends over time and geographic comparisons?</b></li>
+</ul>
+
+<h3 style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">1.1 Data Sources and Preprocessing</h3>
+
+<p style="font-size: 18px; line-height: 1.6;">The dataset consisted of <b>49,998 business records</b> with company registration details, turnover figures from <b>2020 to 2024</b>, and geographic information.</p>
+
+<p style="font-size: 18px; line-height: 1.6;">To ensure accuracy, the following preprocessing steps were performed:</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>Data Cleaning:</b> Blank incorporation dates, invalid time values (e.g., &quot;00:00:00&quot;), and pre-1900 dates were either corrected or removed.</li>
+    <li><b>Turnover Aggregation:</b> Missing turnover values were handled to prevent miscalculations in year-on-year changes.</li>
+    <li><b>Sector-Wise Analysis:</b> &quot;Summary-…&quot; rows aggregating multiple companies were removed to ensure calculations reflected individual company data.</li>
+    <li><b>Python Data Processing:</b> Custom Python scripts were used for predictive modeling, visualizations, and exploratory data analysis.</li>
+</ul>
+
+<h3 style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">1.2 Key Findings</h3>
+
+<h4 style="color: #333; font-size: 20px; margin-top: 20px;">1.2.1 Sector Turnover Trends</h4>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>The <b>sector with the greatest increase</b> in turnover saw a growth of **&pound;2.05 billion** in 2023.</li>
+    <li>The <b>sector with the steepest decline</b> in turnover experienced a **drop of 3.61 billion** in 2021.</li>
+    <li>Turnover fluctuations were particularly pronounced in <b>Other and Retail</b>, suggesting external economic factors significantly influenced these industries.</li>
+</ul>
+
+<h4 style="color: #333; font-size: 20px; margin-top: 20px;">1.2.2 Business Incorporation Insights</h4>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>December</b> was identified as the <b>least common month for incorporation</b>, likely due to businesses delaying registration until the new year.</li>
+    <li>While most industries followed this pattern, **Transport & Logistics and Maintenance & Repair** showed minimal seasonal variation.</li>
+</ul>
+
+<h4 style="color: #333; font-size: 20px; margin-top: 20px;">1.2.3 Geographic Trends & Future Predictions</h4>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>The **United Kingdom dominated turnover contributions**, making up the majority of the dataset&rsquo;s revenue.</li>
+    <li>Turnover trends across **Jersey, Sweden, Ireland, and the U.S.** revealed stark contrasts in revenue growth patterns.</li>
+    <li>Using **linear regression**, turnover for **2025 and 2026 was predicted**, showing expected growth in some sectors and potential downturns in others.</li>
+</ul>
+
+<h3 style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">1.3 Methodologies Used</h3>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>Excel & Pivot Tables:</b> Used for turnover aggregation, sector-wide comparisons, and incorporation analysis.</li>
+    <li><b>Python Data Processing:</b> Automated missing data handling, turnover aggregation, and predictive analytics.</li>
+    <li><b>Statistical Models:</b> Yearly turnover forecasts were generated using **linear regression models**.</li>
+    <li><b>Visualizations:</b> Bar charts, line charts, and heatmaps provided clear insights into trends across years.</li>
+</ul>
+
+<h3 style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">1.4 Recommendations</h3>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>Further sector-specific research is needed to analyze <b>external factors</b> affecting turnover fluctuations.</li>
+    <li>For future business incorporation insights, **seasonal adjustments** should be considered to refine conclusions.</li>
+    <li>Integrating **real-time economic indicators** could enhance predictive accuracy for **turnover forecasts beyond 2026**.</li>
+</ul>
+
+<p style="font-size: 18px; line-height: 1.6;">The following sections provide detailed breakdowns of the data exploration process, turnover trends, incorporation analysis, and predictive insights.</p>
+
+<a href="#table-of-contents" style="font-size: 18px; color: #4CAF50; text-decoration: none;">Back to Table of Contents</a>
+<!-- Section 2: Data Exploration & Preprocessing -->
+<h2 id="data-preprocessing" style="color: #4CAF50; font-size: 24px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">2. Data Exploration & Preprocessing</h2>
+
+<p style="font-size: 18px; line-height: 1.6;">Before conducting any analysis, it was essential to gain a deep understanding of the dataset, its structure, and potential inconsistencies that could affect the validity of results. The dataset consisted of two original sheets:</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>Data Dictionary</b> – A reference sheet explaining the meaning of each column in the dataset.</li>
+    <li><b>Data</b> – The main dataset containing company details, turnover values, and other business attributes.</li>
+</ul>
+
+<p style="font-size: 18px; line-height: 1.6;">To ensure a structured and error-free analysis, a copy of the original file was created. This approach ensured that the original dataset remained intact in case any issues arose during processing.</p>
+
+<h3 id="structured-environment" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">2.1 Creating a Structured Working Environment</h3>
+
+<p style="font-size: 18px; line-height: 1.6;">In the newly created document, additional sheets were introduced for better data management and analysis:</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>Data(original)</b> – A renamed copy of the original dataset for reference.</li>
+    <li><b>Data(processed)</b> – A duplicate of the dataset where modifications and calculations were performed.</li>
+    <li><b>Reporting</b> – A sheet designated for pivot tables, slicers, cards, and charts.</li>
+    <li><b>Dashboard</b> – A visually structured sheet where final findings, slicers, and visualizations were presented for stakeholders.</li>
+</ul>
+
+<p style="font-size: 18px; line-height: 1.6;">To facilitate data manipulation, the following initial steps were performed on the <b>Data(processed)</b> sheet:</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>A table was created using <code>Ctrl + T</code>, allowing structured data handling.</li>
+    <li>A column-by-column review was conducted to understand the dataset and identify inconsistencies.</li>
+</ul>
+
+<p style="font-size: 18px; line-height: 1.6;">This structured approach ensured that all changes were systematically applied while preserving the integrity of the original dataset.</p>
+
+<h3 id="data-quality" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">2.2 Initial Dataset Review: Column-by-Column Assessment</h3>
+
+<p style="font-size: 18px; line-height: 1.6;">Each column was systematically reviewed to identify potential data quality issues.</p>
+
+<h4 style="font-size: 20px;">2.2.1 Company Name</h4>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>The dataset contained <b>10 rows labeled "Summary-…"</b>, one for each industry.</li>
+    <li>These rows aggregated data for each sector but were mixed with individual company records.</li>
+    <li><b>Potential Issue:</b> Including them in calculations could lead to double-counting when summing turnover values.</li>
+    <li><b>Decision:</b> Temporarily kept for validation but later removed after confirming redundancy.</li>
+</ul>
+
+<h4 style="font-size: 20px;">2.2.2 Postcode</h4>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>636 blank values</b> were present.</li>
+    <li><b>10 occurrences of "ALL"</b> (linked to summary rows).</li>
+    <li><b>23 values</b> had an incorrect UK postcode format, requiring potential correction.</li>
+</ul>
+
+<h4 style="font-size: 20px;">2.2.3 Incorporation Date</h4>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>12 rows contained "00:00:00"</b> instead of a valid date.</li>
+    <li><b>10 blank values</b> were found (corresponding to summary rows).</li>
+    <li><b>11 companies had incorporation dates before 1900</b> (e.g., "12/04/1899").</li>
+</ul>
+
+<h4 style="font-size: 20px;">2.2.4 Turnover Columns (2020-2024)</h4>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>All turnover columns contained <b>blank values</b>, meaning missing turnover data was present across multiple years.</li>
+    <li><b>2020 Turnover</b> had the highest number of blanks (<b>21,419 missing values</b>).</li>
+</ul>
+
+<h3 id="validation-techniques" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">2.3 Handling Data Cleaning and Preprocessing Decisions</h3>
+
+<h4 style="font-size: 20px;">2.3.1 Validation and Removal of "Summary-…" Rows</h4>
+<p><b>Problem:</b></p>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>The <b>10 "Summary-…" rows</b> contained aggregated sector data, meaning they duplicated turnover values when included in calculations.</li>
+    <li>If not removed, <b>Pivot Tables and SUM calculations</b> would be inflated due to double-counting.</li>
+</ul>
+
+<p><b>Solution: A Multi-Step Validation Process</b></p>
+
+<h5 style="font-size: 18px;">Step 1: Manual Inspection</h5>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>Each "Summary-…" row was checked to verify its impact on sector totals.</li>
+</ul>
+
+<h5 style="font-size: 18px;">Step 2: SUMIFS Validation</h5>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>Turnover values in the "Summary-…" rows were compared with manually summed turnover data per sector using:</li>
+</ul>
+
+<pre><code class="excel">
+=SUMIFS(O:O, B:B, "Farming", A:A, "&lt;&gt;Summary-Farming")
+</code></pre>
+
+<h5 style="font-size: 18px;">Step 3: Removal of "Summary-…" Rows</h5>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>After validation, the 10 "Summary-…" rows were removed, ensuring that only actual company records remained.</li>
+</ul>
+
+<h4 style="font-size: 20px;">2.3.2 Handling Missing Turnover Data</h4>
+<p><b>Problem:</b></p>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>All turnover columns (<b>2020-2024</b>) contained blank values, which could distort year-on-year turnover calculations.</li>
+</ul>
+
+<p><b>Solution:</b></p>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>Instead of treating missing turnover as &pound;0 (which could create false growth trends), the formula was adjusted to return a blank (<code>""</code>) when turnover data was missing:</li>
+</ul>
+
+<pre style="font-size: 18px; line-height: 1.6; width: 80%; overflow-x: auto; white-space: nowrap; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+<code class="excel">
+=IF(OR([@[2020 Turnover]] = 0, [@[2020 Turnover]] = "", [@[2021 Turnover]] = ""), "", [@[2021 Turnover]] - [@[2020 Turnover]])
+</code></pre>
+
+<p><b>Impact:</b></p>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>Prevents incorrect assumptions that turnover increased from &pound;0 to a positive value when data was simply missing.</li>
+    <li>Ensures that missing values do not influence sector-wide totals in Pivot Tables, allowing for more reliable insights.</li>
+</ul>
+
+<a href="#table-of-contents" style="font-size: 18px; color: #4CAF50; text-decoration: none;">Back to Table of Contents</a>
+</div>
+<!-- Section 3: Analyzing Turnover Trends Across Sectors -->
+<h2 id="turnover-trends" style="color: #4CAF50; font-size: 24px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">3. Analyzing Turnover Trends Across Sectors</h2>
+
+<p style="font-size: 18px; line-height: 1.6;">To determine which sectors experienced the greatest increase and decrease in turnover over the years available, we calculated year-on-year changes and analyzed absolute and percentage variations. This ensured that both large and small industries were fairly compared.</p>
+
+<h3 id="turnover-analysis" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">3.1 Turnover Trends Analysis</h3>
+
+<p style="font-size: 18px; line-height: 1.6;">Initially, we examined raw turnover values for each year, but this approach had limitations:</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>Examining total turnover per sector did not reveal actual year-on-year growth or decline.</li>
+    <li>Missing turnover values caused distortions in results.</li>
+</ul>
+
+<p style="font-size: 18px; line-height: 1.6;">To address these challenges, year-on-year changes were calculated for each sector using absolute (&pound;) and percentage (%) variations.</p>
+
+<h3 id="greatest-increase" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">3.2 Sectors with Greatest Increase and Decrease in Turnover</h3>
+
+<p style="font-size: 18px; line-height: 1.6;">To identify the largest and smallest turnover changes, we introduced the following metrics:</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>Year-on-Year Absolute (&pound;) Changes:</b> Measures the absolute change in turnover (&pound;) from one year to the next.</li>
+    <li><b>Year-on-Year Percentage (%) Changes:</b> Provides a relative comparison across industries.</li>
+</ul>
+
+<!-- Insert Images for Turnover Analysis -->
+<p><b>Figure 1:</b> Turnover changes in absolute (&pound;) values across sectors.</p>
+<img src="C:/Users/Marcos/Desktop/html/Picture1.png" alt="Greatest Increase & Decrease by &pound;" style="max-width: 80%; height: auto;">
+
+<p><b>Figure 2:</b> Turnover changes in percentage (%) values across sectors.</p>
+<img src="C:/Users/Marcos/Desktop/html/Picture2.png" alt="Greatest Increase & Decrease by %" style="max-width: 80%; height: auto;">
+
+
+<h3 id="yearly-changes" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">3.3 Year-on-Year Turnover Changes</h3>
+
+<h4 id="calculation-method" style="color: #333; font-size: 20px;">3.3.1 Calculations and Methodology</h4>
+
+<p style="font-size: 18px; line-height: 1.6;">To measure turnover changes over time, we created the following new columns:</p>
+
+<table class="table" style="font-size: 18px; line-height: 1.6; width: 100%; border-collapse: collapse;">
+    <tr>
+        <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Column Name</th>
+        <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Description</th>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border: 1px solid #ddd;">2021-2020 &pound; Change</td>
+        <td style="padding: 8px; border: 1px solid #ddd;">Turnover change from 2020 to 2021</td>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border: 1px solid #ddd;">2022-2021 &pound; Change</td>
+        <td style="padding: 8px; border: 1px solid #ddd;">Turnover change from 2021 to 2022</td>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border: 1px solid #ddd;">2023-2022 &pound; Change</td>
+        <td style="padding: 8px; border: 1px solid #ddd;">Turnover change from 2022 to 2023</td>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border: 1px solid #ddd;">2024-2023 &pound; Change</td>
+        <td style="padding: 8px; border: 1px solid #ddd;">Turnover change from 2023 to 2024</td>
+    </tr>
+</table>
+
+<p style="font-size: 18px; line-height: 1.6;">Formula used to calculate absolute turnover changes:</p>
+<pre style="font-size: 18px; line-height: 1.6; width: 80%; overflow-x: auto; white-space: nowrap; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+<code class="excel">
+=IF(OR([@[2020 Turnover]] = 0, [@[2020 Turnover]] = "", [@[2021 Turnover]] = ""), "", [@[2021 Turnover]] - [@[2020 Turnover]])
+</code></pre>
+
+<h4 id="refining-calculations" style="color: #333; font-size: 20px;">3.3.2 Refining the Approach for Year-on-Year Calculation</h4>
+
+<p style="font-size: 18px; line-height: 1.6;">To ensure accuracy, further refinements were implemented:</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>Excluding Missing Turnover Values:</b> If either the previous or current year's turnover was missing, the calculation was skipped.</li>
+    <li><b>Ensuring Accurate Totals:</b> Results were validated using Pivot Tables and SUMIFS.</li>
+    <li><b>Comparing Percentage vs. Absolute Changes:</b> Percentage changes provided a clearer picture for smaller industries.</li>
+</ul>
+
+<p style="font-size: 18px; line-height: 1.6;">Formula used to calculate percentage turnover changes:</p>
+
+<pre style="font-size: 18px; line-height: 1.6; width: 80%; overflow-x: auto; white-space: nowrap; background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
+<code class="excel">=IF(OR([@[2020 Turnover]] = 0, [@[2020 Turnover]] = "", [@[2021 Turnover]] = ""), "", ([@[2021 Turnover]] - [@[2020 Turnover]]) / [@[2020 Turnover]])
+</code></pre>
+
+<p style="font-size: 18px; line-height: 1.6;">To ensure that these calculations were robust, validation checks included:</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>Comparing Pivot Table outputs with SUMIFS results.</li>
+    <li>Performing visual outlier detection.</li>
+</ul>
+
+<a href="#table-of-contents" style="font-size: 18px; color: #4CAF50; text-decoration: none;">Back to Table of Contents</a>
+<!-- Section 4: Farming Industry Turnover Analysis -->
+<h2 id="farming-turnover" style="color: #4CAF50; font-size: 24px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">4. Farming Industry Turnover Analysis</h2>
+
+<p style="font-size: 18px; line-height: 1.6;">This section provides a detailed analysis of the farming industry’s turnover across the available years (2020 to 2024), identifying trends, challenges, and insights. The focus was to determine how farming turnover fluctuated and how to accurately calculate year-on-year changes in the presence of missing data and sector-specific issues.</p>
+
+<h3 id="farming-breakdown" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">4.1 Turnover Breakdown for Farming Industry</h3>
+
+<p style="font-size: 18px; line-height: 1.6;">For a structured analysis, turnover data for the farming industry was filtered and aggregated. Key challenges were encountered related to missing data and inconsistencies in sector classifications.</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>Data Extraction:</b> Only farming companies were selected using the criterion <code>CompanyCategory = "Farming"</code>.</li>
+    <li><b>Challenges:</b> Missing values for turnover, invalid "Summary-..." rows that needed removal to avoid double-counting.</li>
+    <li><b>Solution:</b> Missing values were excluded from the calculations, and "Summary-..." rows were deleted to prevent duplicate values.</li>
+</ul>
+
+<h3 id="farming-methodology" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">4.2 Methodology and Approach</h3>
+
+<p style="font-size: 18px; line-height: 1.6;">The methodology was executed as follows:</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>Filtered farming-related records to isolate turnover data for the target years.</li>
+    <li>Used <b>Pivot Tables</b> and <b>SUMIFS</b> functions in Excel to aggregate turnover data across different years.</li>
+    <li>Implemented <b>Python-based validation</b> to cross-check the totals dynamically and ensure data integrity.</li>
+    <li>Refined calculations by ensuring that missing values were treated as empty, not £0, in order to prevent misinterpretations.</li>
+</ul>
+
+<h3 id="farming-visualization" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">4.3 Visualizing Farming Trends</h3>
+
+<p style="font-size: 18px; line-height: 1.6;">To make the trends more understandable and to visualize year-on-year turnover for farming, the following charts were created:</p>
+
+<!-- Insert Farming Turnover Chart -->
+<p><b>Figure 3:</b> Total turnover for the farming industry across years.</p>
+<img src="C:/Users/Marcos/Desktop/html/Picture3.png" alt="Farming Turnover Chart">style="max-width: 60%; height: auto;">
+
+<h3 id="farming-chart" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">4.4 Observations & Insights</h3>
+
+<p style="font-size: 18px; line-height: 1.6;">The analysis revealed the following insights:</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>Fluctuating turnover:</b> Farming turnover showed significant fluctuations year-to-year. Some years exhibited growth, while others faced declines, possibly due to changing market conditions and external factors.</li>
+    <li><b>Volatility in 2022:</b> A major decrease in turnover occurred in 2022. This is believed to be influenced by external pressures such as adverse weather conditions and supply chain disruptions in the agricultural sector.</li>
+    <li><b>Stable Growth in 2024:</b> The farming industry showed signs of recovery in 2024, likely driven by favorable conditions for the industry.</li>
+</ul>
+
+<p style="font-size: 18px; line-height: 1.6;">The chart and tables below represent these findings visually, making it easier to spot the trends over the years.</p>
+
+<h3 id="farming-validation" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">4.5 Validation & Accuracy Checks</h3>
+
+<p style="font-size: 18px; line-height: 1.6;">Several validation checks were applied to ensure the results were accurate and reliable:</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>Used <b>SUMIFS</b> functions in Excel to verify total turnover calculations for each year.</li>
+    <li>Python validation ensured that the numbers were consistent with Excel results and accurately aggregated.</li>
+    <li>Checked for duplicate entries in the farming sector and confirmed that all data was correctly categorized.</li>
+    <li>Outlier detection was performed to avoid inflated values due to incorrect data entries.</li>
+</ul>
+
+<h3 id="farming-next-steps" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">4.6 Next Steps</h3>
+
+<p style="font-size: 18px; line-height: 1.6;">Future steps for analysis include:</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>Forecasting turnover for 2025 and 2026</b>: We plan to refine predictions for future farming turnover based on observed trends and seasonal patterns.</li>
+    <li><b>Investigating external factors</b>: Further analysis will be done to understand the impact of policies, market trends, and environmental factors on farming turnover.</li>
+</ul>
+
+<a href="#table-of-contents" style="font-size: 18px; color: #4CAF50; text-decoration: none;">Back to Table of Contents</a>
+<!-- Section 5: Business Incorporation Trends -->
+<h2 id="incorporation-trends" style="color: #4CAF50; font-size: 24px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">5. Business Incorporation Trends</h2>
+
+<p style="font-size: 18px; line-height: 1.6;">This section explores the trends related to the incorporation of businesses across industries, focusing on identifying the least common months for incorporation, as well as industry-specific patterns.</p>
+
+<h3 id="least-common-month" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">5.1 Analysis of Least Common Month for Incorporation</h3>
+
+<p style="font-size: 18px; line-height: 1.6;">We used a pivot table to count the number of business incorporations per month and identified the least common months across various industries. The overall trends revealed interesting seasonal patterns for business incorporations. Based on the data:</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>December</b> was the least common month for incorporation, representing only 6.5% of the total incorporations.</li>
+    <li>Notably, <b>Farming</b> had the least incorporations in December (3%), indicating potential seasonality factors influencing registration trends in this industry.</li>
+</ul>
+
+<h4 style="font-size: 18px; line-height: 1.6;">Detailed Breakdown of the Least Common Months for Each Industry:</h4>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>Farming:</b> Least common month was December (3%)</li>
+    <li><b>Maintenance and Repair:</b> Least common month was November (8%)</li>
+    <li><b>Transport & Logistics:</b> No significant decrease in December</li>
+    <li><b>Education:</b> Least common month was January (7%)</li>
+    <!-- Continue for other industries -->
+</ul>
+
+<p style="font-size: 18px; line-height: 1.6;">The pivot table results were validated with the raw dataset using COUNTIFS(), and manual checks were conducted for consistency. This validation ensured the accuracy of the results and further confirmed the seasonal trends identified.</p>
+
+<!-- Placeholder for Image 4: Total Incorporation by Month -->
+<p><b>Figure 4:</b> Total Incorporation by Month.</p>
+<img src="C:/Users/Marcos/Desktop/html/Picture4.png" alt="Total Incorporation by Month" style="max-width: 80%; height: auto;">
+
+
+<h3 id="industry-trends" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">5.2 Industry-Specific Trends in Incorporation</h3>
+
+<p style="font-size: 18px; line-height: 1.6;">Industry-specific trends were analysed using the data for monthly incorporations. A heatmap was generated using Python to provide a more readable visualisation of these trends across industries.</p>
+
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li>Some industries, such as <b>Farming</b>, showed significant seasonal variation, with monthly changes fluctuating widely.</li>
+    <li>Others, such as <b>Education</b>, had more consistent trends but showed a higher concentration of incorporations in certain months.</li>
+    <li>The <b>Maintenance & Repair</b> and <b>Transport & Logistics</b> industries did not follow typical seasonal patterns, making their trends unique.</li>
+</ul>
+
+<p style="font-size: 18px; line-height: 1.6;">The heatmap helped clarify the monthly trends across industries, especially where overlap occurred in the seasonality of incorporations.</p>
+
+<!-- Placeholder for Image 5: Python Heatmap for Industry Incorporations -->
+<p><b>Figure 5:</b> Python Heatmap for Industry-Specific Incorporations.</p>
+<img src="C:/Users/Marcos/Desktop/html/Picture5.png" alt="Python Heatmap for Industry Incorporations">
+
+<h4 style="font-size: 18px; line-height: 1.6;">Heatmap Insights:</h4>
+<ul style="font-size: 18px; line-height: 1.6;">
+    <li><b>January and December</b> were the months with the lowest incorporation rates across most industries.</li>
+    <li><b>Farming</b> exhibited the most volatility in incorporation dates.</li>
+    <li><b>Education</b> and <b>Maintenance & Repair</b> showed peaks in the earlier months of the year.</li>
+</ul>
+
+<p style="font-size: 18px; line-height: 1.6;">The Python code used to generate the heatmap and perform the validation is detailed below.</p>
+
+# Python code used to generate the heatmap
+<!-- Insert Python Code Placeholder for Heatmap Generation -->
+<p style="font-size: 18px; line-height: 1.6;"><b>Python Code for Heatmap Generation:</b></p>
+
+<pre style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; font-size: 16px; color: #333; line-height: 1.6; max-width: 80%; overflow-x: auto;">
+<code>
+# Python code used to generate the heatmap
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Creating the data as a dictionary to simulate the table you provided
+data = {
+    "Month": ["January", "February", "March", "April", "May", "June", "July", "August", "September", 
+              "October", "November", "December"],
+    "Construction": [7.90, 7.42, 9.57, 10.05, 8.62, 7.95, 7.37, 8.09, 9.05, 8.76, 8.86, 6.37],
+    "Consultancy": [7.98, 8.81, 9.69, 8.33, 8.31, 7.85, 8.63, 7.79, 8.17, 9.38, 8.40, 6.66],
+    "Education": [6.97, 9.46, 9.46, 7.45, 9.34, 6.62, 9.69, 8.16, 7.33, 9.93, 8.63, 6.97],
+    "Farming": [8.57, 11.43, 7.14, 8.57, 10.00, 7.86, 5.71, 6.43, 12.86, 7.14, 11.43, 2.86],
+    "Healthcare": [7.51, 8.02, 10.18, 7.25, 7.25, 8.28, 8.54, 7.42, 9.15, 9.92, 9.40, 7.08],
+    "Maintenance and Repair": [9.45, 9.58, 7.76, 6.67, 6.91, 7.76, 8.00, 8.61, 8.24, 9.94, 8.36, 8.73],
+    "Manufacturing": [7.68, 9.48, 9.82, 8.70, 7.77, 7.05, 8.50, 8.65, 7.97, 8.79, 9.23, 6.37],
+    "Other": [8.08, 8.39, 9.51, 8.40, 8.00, 7.95, 8.48, 7.97, 8.66, 9.19, 8.87, 6.50],
+    "Retail": [8.40, 8.27, 8.80, 8.75, 8.63, 7.91, 8.40, 8.35, 9.01, 8.75, 8.85, 5.88],
+    "Transport and Logistics": [7.63, 8.34, 9.32, 8.25, 7.99, 7.99, 6.74, 7.54, 10.29, 8.61, 9.23, 8.07]
+}
+
+# Convert the dictionary into a pandas DataFrame
+df = pd.DataFrame(data)
+
+# Set 'Month' as the index
+df.set_index("Month", inplace=True)
+
+# Create the heatmap with the desired color scheme: Green, White, Red
+plt.figure(figsize=(12, 8))
+
+# Create heatmap and format it (green is higher, red is lower)
+sns.heatmap(df.T, 
+            annot=True, 
+            cmap="RdYlGn", 
+            fmt=",.0f", 
+            linewidths=1, 
+            linecolor='gray', 
+            cbar_kws={'label': 'Percentage of Incorporation'}, 
+            annot_kws={"size": 10}, 
+            cbar=False)
+
+# Remove x and y axis labels as they're obvious
+plt.xlabel('')
+plt.ylabel('')
+
+# Title and formatting
+plt.title('Monthly Distribution of Business Incorporations by Industry', fontsize=16)
+plt.xticks(rotation=45, ha='right', fontsize=12)
+plt.yticks(fontsize=12)
+
+# Bold December and Farming
+for label in plt.gca().get_xticklabels():
+    if label.get_text() == 'December':
+        label.set_fontweight('bold')
+
+for label in plt.gca().get_yticklabels():
+    if label.get_text() == 'Farming':
+        label.set_fontweight('bold')
+
+# Display the plot
+plt.tight_layout()
+plt.show()
+
+# Now, let's analyze and print out some interesting trends
+# Find the least common month for each industry
+least_common_months = df.idxmin(axis=1)
+least_common_values = df.min(axis=1)
+
+# Find the overall least common month
+overall_least_month = df.min(axis=0).idxmin()
+overall_least_value = df.min(axis=0).min()
+
+# Print out insights
+print("
+--- Interesting Trends ---")
+for industry, month in least_common_months.items():
+    print(f"Least common month for {industry}: {month} with {least_common_values[industry]:.0f}%")
+print(f"
+Overall least common month: {overall_least_month} with {overall_least_value:.0f}%")
+</code>
+</pre>
+
+<h3 id="turnover-by-industry" style="color: #333; font-size: 22px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 30px;">5.3 Turnover Trends by Industry</h3>
+
+<p style="font-size: 18px; line-height: 1.6;">Along with incorporation trends, turnover patterns by industry were analysed. A deep dive into turnover data was conducted to identify potential correlations between sector growth and the timing of incorporation.</p>
+
+
+<p><a href="#table-of-contents">Back to Table of Contents</a></p>
+
+<h2 id="integrated-analysis">6. Integrated Analysis of Turnover and Geographic Trends</h2>
+
+<p>This section examines turnover trends across geographic areas (countries) over time. We used Python for predictive analysis, data aggregation, and generating visualizations of turnover trends for various countries.</p>
+
+<h3 id="python-predictions">6.1 Python Implementation for Predictions and Visualization</h3>
+
+<p>Python was utilized to aggregate turnover data by country, predict future turnover for 2025 and 2026, and create two essential charts:</p>
+
+<h4 id="data-aggregation">6.1.1 Python Data Aggregation (Country-Level Turnover)</h4>
+
+<p>The following Python code was used to aggregate turnover data at the country level and predict future turnover:</p>
+
+<!-- INSERT FULL PYTHON CODE: HMRC.py -->
+
+<pre style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; max-width: 80%;">
+<code style="font-size: 16px; line-height: 1.5;">
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+from openpyxl import load_workbook
+from openpyxl.utils.dataframe import dataframe_to_rows
+from openpyxl.chart import LineChart, Reference
+
+# Load data from the specified Excel sheet
+file_path = "C:/Users/Marcos/Desktop/CV/Civil Services Job/Civil Service Interview Prep/Data Analyst - HMRC/HMRC Exercise(processed)-Python.xlsx"
+
+try:
+    df = pd.read_excel(file_path, sheet_name='Data(processed)')
+    print("Data loaded successfully.")
+except Exception as e:
+    print(f"Error loading data: {e}")
+
+# Fill missing turnover data with 0
+df[['2020 Turnover', '2021 Turnover', '2022 Turnover', '2023 Turnover', '2024 Turnover']] = df[['2020 Turnover', '2021 Turnover', '2022 Turnover', '2023 Turnover', '2024 Turnover']].fillna(0)
+
+# Aggregate data by country
+country_totals = df.groupby('CountryOfOrigin')[['2020 Turnover', '2021 Turnover', '2022 Turnover', '2023 Turnover', '2024 Turnover']].sum().reset_index()
+
+# Create a new DataFrame to store predictions
+pred_df = country_totals.copy()
+
+# Function to predict future turnover using linear regression
+def predict_future_turnover(data):
+    X = np.array([0, 1, 2, 3, 4]).reshape(-1, 1)  # 2020-2024 as numeric values
+    y = data.values
+    model = LinearRegression().fit(X, y)
+    future_years = np.array([5, 6]).reshape(-1, 1)  # 2025-2026
+    return model.predict(future_years).flatten()
+
+# Apply prediction to each country's data
+pred_df[['2025 Turnover', '2026 Turnover']] = pred_df.iloc[:, 1:].apply(predict_future_turnover, axis=1, result_type='expand')
+
+# Ensure no negative predictions
+pred_df[['2025 Turnover', '2026 Turnover']] = pred_df[['2025 Turnover', '2026 Turnover']].clip(lower=0)
+
+# Calculate Grand Total
+pred_df['Grand Total'] = pred_df.iloc[:, 1:].sum(axis=1)
+
+# Sort by Grand Total
+pred_df = pred_df.sort_values('Grand Total', ascending=False)
+
+# Save the predictive analysis to the "Python" sheet
+try:
+    book = load_workbook(file_path)
+    std = book['Python'] if 'Python' in book.sheetnames else book.create_sheet('Python')
+
+    # Clear existing content
+    for row in std:
+        for cell in row:
+            cell.value = None
+
+    # Write DataFrame to sheet
+    for r in dataframe_to_rows(pred_df, index=False, header=True):
+        std.append(r)
+
+    # Create a table for yearly totals
+    year_totals = pred_df.iloc[:, 1:].sum()
+    std.append(["Year", "Total Turnover"])
+    for i, year in enumerate(year_totals.index):
+        std.append([year.replace(" Turnover", ""), year_totals[i]])
+
+    # Create line chart for total turnover by year
+    chart1 = LineChart()
+    chart1.title = "Total Turnover by Year (All Countries)"
+    chart1.y_axis.title = "Turnover"
+    chart1.x_axis.title = "Year"
+    data = Reference(std, min_col=2, min_row=len(pred_df) + 3, max_row=len(pred_df) + 10, max_col=2)
+    cats = Reference(std, min_col=1, min_row=len(pred_df) + 4, max_row=len(pred_df) + 10)
+    chart1.add_data(data, titles_from_data=True)
+    chart1.set_categories(cats)
+    std.add_chart(chart1, "K1")
+
+    # Create second chart: Top 5 Countries by Turnover
+    top5 = pred_df.head(5)
+    chart2 = LineChart()
+    chart2.title = "Top 5 Countries by Turnover (2020-2026)"
+    chart2.y_axis.title = "Turnover"
+    chart2.x_axis.title = "Year"
+
+    for i, country in enumerate(top5['CountryOfOrigin']):
+        row_idx = i + 2
+        data = Reference(std, min_col=2, max_col=8, min_row=row_idx, max_row=row_idx)
+        chart2.add_data(data, titles_from_data=False)
+        chart2.series[i].title = country
+
+    cats = Reference(std, min_col=2, max_col=8, min_row=1, max_row=1)
+    chart2.set_categories(cats)
+    std.add_chart(chart2, "K15")
+
+    book.save(file_path)
+    print("Results and charts saved to the 'Python' sheet.")
+except Exception as e:
+    print(f"Error saving results to Excel: {e}")
+</code>
+</pre>
+
+<p><a href="#table-of-contents" style="color: #4CAF50; text-decoration: none;">Back to Table of Contents</a></p>
+<h4 id="total-turnover-chart">6.1.2 Python Chart: Total Turnover Across All Countries (2020-2026)</h4>
+
+<p>The chart below illustrates the total turnover for all countries across the years, from 2020 to 2026:</p>
+
+<!-- INSERT FULL PYTHON CODE: HMRC2.py -->
+<pre style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; max-width: 80%;">
+<code style="font-size: 16px; line-height: 1.5;">
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+
+# Load the "Python" sheet (which contains the processed country turnover data)
+# Use escaped backslashes
+file_path = "C:\Users\Marcos\Desktop\CV\Civil Services Job\Civil Service Interview Prep\Data Analyst - HMRC\HMRC Exercise(processed)-Python.xlsx"
+
+try:
+    df = pd.read_excel(file_path, sheet_name='Python')
+    print("Data loaded successfully from the 'Python' sheet.")
+except Exception as e:
+    print(f"Error loading data: {e}")
+
+# Convert year columns to numeric values
+year_columns = ['2020 Turnover', '2021 Turnover', '2022 Turnover', '2023 Turnover', '2024 Turnover', '2025 Turnover', '2026 Turnover']
+
+# Function to format axis labels in Thousands, Millions, or Billions
+def format_ticks(x, pos):
+    if x >= 1_000_000_000:
+        return f'{x*1e-9:.0f}'  # Billions
+    elif x >= 1_000_000:
+        return f'{x*1e-6:.0f}'  # Millions
+    elif x >= 1_000:
+        return f'{x*1e-3:.0f}'  # Thousands
+    else:
+        return f'{x:.0f}'  # Normal number
+
+# Function to calculate % change for each year (NaN for 2020)
+def calculate_percentage_change(values):
+    return [None] + [(values[i] - values[i-1]) / values[i-1] * 100 if values[i-1] != 0 else None for i in range(1, len(values))]
+
+# Step 1: Create First Line Chart - Total Turnover by Year (All Countries)
+plt.figure(figsize=(10, 6))
+years = np.array([2020, 2021, 2022, 2023, 2024, 2025, 2026])
+totals_per_year = df[year_columns].sum().values  # Aggregate totals
+
+# Plot the total turnover across all countries
+plt.plot(years, totals_per_year, marker='o', linestyle='-', color='b', label="Total Turnover")
+plt.title("Total Turnover Across All Countries (2020-2026)")
+plt.ylabel("All Countries Turnover (£ Billions)")
+
+# Format y-axis to use Thousands, Millions, or Billions
+plt.gca().yaxis.set_major_formatter(ticker.FuncFormatter(format_ticks))
+
+# Calculate percentage changes for total turnover
+percentage_changes = calculate_percentage_change(totals_per_year)
+
+# Add data labels for percentage change on the plot (ensure they don't overlap)
+for i, txt in enumerate(percentage_changes):
+    if txt is not None:  # Skip first year (2020)
+        if i in [3, 4, 5]:  # For the 3rd, 4th, and 5th labels (slightly below)
+            plt.text(years[i], totals_per_year[i] * (1 - 0.02), f"{txt:.0f}%", fontsize=10, ha='center', va='top', color='black')
+        elif i == 6:  # For the 6th label (further below)
+            plt.text(years[i], totals_per_year[i] * (1 - 0.02), f"{txt:.0f}%", fontsize=10, ha='center', va='top', color='black')
+        else:
+            plt.text(years[i], totals_per_year[i] * (1 + 0.02), f"{txt:.0f}%", fontsize=10, ha='center', va='bottom', color='black')
+
+# Remove gridlines from the plot area (but keep the grid for axis ticks)
+plt.grid(False)
+
+# Adjust x-axis labels for readability
+plt.xticks(years)
+plt.tick_params(axis='x', rotation=45)  # Rotate x-axis labels for readability
+
+# Add legend
+plt.legend()
+
+# Save chart as PNG
+plt.tight_layout()  # Adjust the layout for better spacing
+plt.savefig("Total_Turnover_All_Countries.png")  # Save chart as PNG
+plt.show() </b></p>
+</code>
+</pre>
+
+</b> <i>(Chart Generation for Total Turnover)</i></p>
+
+<p><b>Figure 6:</b> Total Turnover Across All Countries (2020-2026)</p>
+<img src="C:/Users/Marcos/Desktop/CV/Civil Services Job/Civil Service Interview Prep/Data Analyst - HMRC/Picture6.png" alt="Total Turnover Across All Countries">
+
+<h4 id="top-5-turnover-chart">6.1.3 Python Chart: Top 5 Countries' Turnover (2020-2026)</h4>
+
+<p>This chart shows turnover trends for the top 5 countries, with a special focus on the UK. It compares these countries' turnover over the years, using dual y-axes to handle large data differences:</p>
+<h4 id="top-5-turnover-chart">6.1.3 Python Chart: Top 5 Countries' Turnover (2020-2026)</h4>
+
+<p>This chart shows turnover trends for the top 5 countries, with a special focus on the UK. It compares these countries' turnover over the years, using dual y-axes to handle large data differences:</p>
+
+<!-- INSERT FULL PYTHON CODE: HMRC3.py -->
+<pre style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; max-width: 80%;">
+<code style="font-size: 16px; line-height: 1.5;">
+import pandas as pd 
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+
+# Load the "Python" sheet (which contains the processed country turnover data)
+file_path = "C:/Users/Marcos/Desktop/CV/Civil Services Job/Civil Service Interview Prep/Data Analyst - HMRC/HMRC Exercise(processed)-Python.xlsx"
+
+try:
+    df = pd.read_excel(file_path, sheet_name='Python')
+    print("Data loaded successfully from the 'Python' sheet.")
+except Exception as e:
+    print(f"Error loading data: {e}")
+
+# Convert year columns to numeric values
+year_columns = ['2020 Turnover', '2021 Turnover', '2022 Turnover', '2023 Turnover', '2024 Turnover', '2025 Turnover', '2026 Turnover']
+years = np.array([2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+# Function to format axis labels in Billions and Millions
+def format_ticks(x, pos):
+    if x >= 1_000_000_000:
+        return f'{x*1e-9:.0f}B'  # Billions
+    elif x >= 1_000_000:
+        return f'{x*1e-6:.0f}M'  # Millions
+    else:
+        return f'{x:.0f}'  # Normal number
+
+# Function to calculate % change for each year (NaN for 2020)
+def calculate_percentage_change(values):
+    return [None] + [(values[i] - values[i-1]) / values[i-1] * 100 if values[i-1] != 0 else None for i in range(1, len(values))]
+
+# Step 1: Create the Second Line Chart - Top 5 Countries by Turnover
+fig, ax1 = plt.subplots(figsize=(10, 6))
+
+# Get the data for the UK
+uk_data = df[df['CountryOfOrigin'] == 'United Kingdom']
+uk_turnover = uk_data[year_columns].values.flatten()
+uk_percent_change = calculate_percentage_change(uk_turnover)
+
+# Plot the UK turnover on the left y-axis
+ax1.plot(years, uk_turnover, marker='o', linestyle='-', color='blue', label="United Kingdom")
+ax1.set_ylabel("UK Turnover (£ Billions)", color='blue', fontsize=12)
+ax1.tick_params(axis='y', labelcolor='blue')
+
+# Format UK turnover axis (Billions)
+ax1.yaxis.set_major_formatter(ticker.FuncFormatter(format_ticks))
+ax1.set_ylim(0, 3.5e10)  # Set UK y-axis bounds
+ax1.yaxis.set_major_locator(ticker.MultipleLocator(5.0e9))  # Major unit
+
+# Add percentage change labels for UK (in black & positioned above the line)
+for i, txt in enumerate(uk_percent_change):
+    if txt is not None:  # Skip first year (2020)
+        if i in [2, 5]:  # Adjust specific labels
+            ax1.text(years[i], uk_turnover[i] * 1.05, f"{txt:.0f}%", fontsize=10, ha='center', va='bottom', color='black')  # Slightly further away for overlap
+        else:
+            ax1.text(years[i], uk_turnover[i] * 1.02, f"{txt:.0f}%", fontsize=10, ha='center', va='bottom', color='black')
+
+# Set a second y-axis for the other top 5 countries
+ax2 = ax1.twinx()
+top_5_countries = df.nlargest(5, 'Grand Total')  # Get top 5 countries (including UK)
+
+# Plot the other 4 countries (excluding UK) with different colors and line styles
+colors = ['red', 'green', 'purple', 'orange']
+line_styles = ['-', '-', '-', '-']
+i = 0
+
+# Offset to avoid label overlap
+label_offset = 0.02
+
+for index, row in top_5_countries.iterrows():
+    country_name = row['CountryOfOrigin'].title()  # Fix country name capitalization
+    if country_name != 'United Kingdom':  # Exclude UK from the second y-axis plot
+        turnover_values = row[year_columns].values
+        percent_changes = calculate_percentage_change(turnover_values)
+
+        ax2.plot(years, turnover_values, marker='o', linestyle=line_styles[i], color=colors[i], label=country_name)
+
+        # Add percentage change labels for each country (in black & positioned above/below the line)
+        for j, txt in enumerate(percent_changes):
+            if txt is not None:  # Skip first year (2020)
+                if country_name == 'Netherlands':
+                    # Slightly more down for Netherlands
+                    ax2.text(years[j], turnover_values[j] * (1 - 0.1), f"{txt:.0f}%", fontsize=10, ha='center', va='top', color='black')
+                elif country_name == 'United States':
+                    # Below mark line for United States
+                    ax2.text(years[j], turnover_values[j] * (1 - label_offset), f"{txt:.0f}%", fontsize=10, ha='center', va='top', color='black')
+                elif country_name == 'Sweden':
+                    # Slightly above line for Sweden
+                    ax2.text(years[j], turnover_values[j] * (1 + 0.05), f"{txt:.0f}%", fontsize=10, ha='center', va='bottom', color='black')
+                elif country_name == 'Jersey' and j in [5, 6]:  # Adjust last two labels for Jersey
+                    # Slightly below mark line for Jersey (5th and 6th labels)
+                    ax2.text(years[j], turnover_values[j] * (1 - 0.05), f"{txt:.0f}%", fontsize=10, ha='center', va='top', color='black')
+                elif country_name == 'Jersey' and j == 2:  # Adjust third label for Jersey (73%)
+                    # Slightly to the right for Jersey's third label
+                    ax2.text(years[j] + 0.2, turnover_values[j] * (1 + label_offset), f"{txt:.0f}%", fontsize=10, ha='center', va='bottom', color='black')
+                else:
+                    # Default position for other countries (above the line)
+                    ax2.text(years[j], turnover_values[j] * (1 + label_offset), f"{txt:.0f}%", fontsize=10, ha='center', va='bottom', color='black')
+
+        i += 1  # Move to the next color/style
+
+# Format other countries' turnover axis (Millions)
+ax2.set_ylabel("Other Countries Turnover (£ Millions)", color='black', fontsize=12)
+ax2.tick_params(axis='y', labelcolor='black')
+ax2.yaxis.set_major_formatter(ticker.FuncFormatter(format_ticks))
+ax2.set_ylim(0, 1.8e7)  # Set Other Countries' y-axis bounds
+ax2.yaxis.set_major_locator(ticker.MultipleLocator(2.0e6))  # Major unit
+
+# Add title and remove major gridlines
+plt.title("Top 5 Countries' Turnover - UK vs Others", fontsize=14)
+ax1.grid(False)  # Remove major gridlines
+
+# Add legend and ensure it is positioned below the chart
+handles1, labels1 = ax1.get_legend_handles_labels()
+handles2, labels2 = ax2.get_legend_handles_labels()
+ax1.legend(handles1 + handles2, labels1 + labels2, loc='upper center', bbox_to_anchor=(0.5, -0.1), ncol=5)
+
+# Ensure layout is properly spaced
+plt.tight_layout()
+
+# Save the chart as PNG
+plt.savefig("Top_5_Countries_Turnover_UK_vs_Others.png")  # Save chart as PNG
+plt.show()
+</code>
+</pre>
+
+</b> <i> (Chart Generation for Top 5 Countries)</i></p>
+<p><b>Figure 7:</b> Top 5 Countries' Turnover (2020-2026)</p>
+<img src="C:/Users/Marcos/Desktop/CV/Civil Services Job/Civil Service Interview Prep/Data Analyst - HMRC/Picture7.png" alt="Top 5 Countries Turnover (UK vs Others)">
+
+<h3 id="key-insights">6.2 Key Insights</h3>
+
+<p>The analysis provides several key insights into turnover trends:</p>
+
+<ul>
+    <li><b>The dominance of the UK:</b> The UK dominates turnover across all years, accounting for almost 100% of the total turnover.</li>
+    <li><b>Predictions for 2025 and 2026:</b> Turnover predictions for 2025 and 2026 suggest steady growth, with the UK maintaining its dominance in turnover.</li>
+    <li><b>Logarithmic scale usage:</b> The second y-axis scale for the smaller countries allows for a more meaningful comparison of turnover data.</li>
+</ul>
+
+<h3 id="challenges">6.3 Challenges and Solutions</h3>
+
+<p>Several challenges were faced during the analysis:</p>
+
+<ul>
+    <li><b>Large data discrepancies:</b> The UK's overwhelming turnover made it difficult to compare it to smaller countries. Solution: We applied a logarithmic scale to the second y-axis.</li>
+    <li><b>Handling missing values:</b> Missing data was handled using linear regression to predict the missing values for 2025 and 2026.</li>
+    <li><b>Visualization challenges:</b> Adjustments were made to the chart legend to prevent overlaps with the axis labels.</li>
+</ul>
+
+<h3 id="python-eda">6.4 Python Advanced Analysis (EDA, Outliers, Correlation, Trends)</h3>
+
+<p>The following Python code was used for exploratory data analysis (EDA), regression, and trend analysis:</p>
+
+<!-- INSERT FULL PYTHON CODE: HMRC4.py -->
+<pre style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; max-width: 80%;">
+<code style="font-size: 16px; line-height: 1.5;">import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.ensemble import IsolationForest
+import statsmodels.api as sm
+import sweetviz as sv
+import dtale
+
+# Provided data
+data = {
+    'Country': ['United Kingdom', 'Jersey', 'United States', 'Sweden', 'Netherlands'],
+    '2020': [22030067701, 5693835, 9534383, 4041983, 2535019],
+    '2021': [18836540437, 6396258, 8229400, 2662674, 1914043],
+    '2022': [23172369384, 11064569, 10305342, 3800432, 2079302],
+    '2023': [26375205413, 11144306, 10594799, 3822148, 2558181],
+    '2024': [28128721205, 11865399, 11770374, 4032491, 2706043],
+    '2025': [29629372423, 14360226, 12138074, 4014093, 2654373],
+    '2026': [31602969622, 16069344, 12821812, 4128142, 2752992],
+    '2021 % Change': [-14, 12, -14, -34, -24],
+    '2022 % Change': [23, 73, 25, 43, 9],
+    '2023 % Change': [14, 1, 3, 1, 23],
+    '2024 % Change': [7, 6, 11, 6, 6],
+    '2025 % Change': [5, 21, 3, 0, -2],
+    '2026 % Change': [7, 12, 6, 3, 4]
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# 1. **Exploratory Data Analysis (EDA) with Sweetviz**:
+def sweetviz_eda(df):
+    # Generate EDA report with Sweetviz
+    report = sv.analyze(df)
+    
+    # Save and show the EDA report as an interactive HTML file
+    report.show_html("eda_report.html")
+    print("Sweetviz EDA report has been generated and saved as 'eda_report.html'.")
+
+# 2. **Exploratory Data Analysis (EDA) with D-Tale**:
+def dtale_eda(df):
+    # Start an interactive data exploration session with D-Tale
+    d = dtale.show(df)
+    
+    # Open the session in the default browser
+    d.open_browser()
+    print("D-Tale interactive session is open in your browser.")
+
+# 3. **Statistical Analysis with Statsmodels (Linear Regression)**:
+def regression_analysis(df):
+    # Run linear regression to predict 2026 turnover based on 2020 turnover
+    X = df['2020']
+    y = df['2026']
+    
+    X = sm.add_constant(X)  # Add constant for intercept
+    model = sm.OLS(y, X).fit()
+    predictions = model.predict(X)
+    
+    print(f"
+Linear Regression Model Summary:
+{model.summary()}")
+
+# 4. **Outlier Detection using Isolation Forest**:
+def outlier_detection(df):
+    # Detect anomalies using Isolation Forest
+    model = IsolationForest(contamination=0.1)
+    outliers = model.fit_predict(df[['2020', '2021', '2022', '2023', '2024', '2025', '2026']])
+    df['Outliers'] = outliers
+    
+    print("
+Outliers Detected (Anomalies):")
+    for index, row in df.iterrows():
+        if row['Outliers'] == -1:
+            print(f"{row['Country']} is detected as an anomaly due to unusual turnover trends.")
+
+# 5. **Correlation Matrix Visualization**:
+def correlation_matrix(df):
+    # Calculate correlation between countries' growth percentages
+    growth_patterns = df.loc[:, '2021 % Change':'2026 % Change']
+    corr_matrix = growth_patterns.corr()
+    
+    # Plot the correlation heatmap using Seaborn
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt='.2f', linewidths=1)
+    plt.title('Correlation Matrix of Yearly % Changes')
+    plt.show()
+
+# 6. **Full Profile Analysis with pandas_profiling**:
+def pandas_profiling_eda(df):
+    # Generate an interactive EDA report with pandas_profiling
+    profile = pandas_profiling.ProfileReport(df)
+    profile.to_file("eda_report_profiling.html")
+    print("Pandas Profiling EDA report has been generated and saved as 'eda_report_profiling.html'.")
+
+# 7. **Advanced Trend Analysis and Insights**:
+def advanced_insights(df):
+    insights = []
+
+    # Detect trends in turnover for each country
+    insights.append("Advanced Trend Analysis and Insights:")
+    for index, row in df.iterrows():
+        country = row['Country']
+        trends = []
+        
+        for year in range(1, 6):  # Start from 2021 (because 2020 doesn't have previous year)
+            if row[year + 1] < row[year]:
+                trends.append(f"Decrease in {list(df.columns)[year]}: {row[year + 1]}%")
+            elif row[year + 1] > row[year]:
+                trends.append(f"Increase in {list(df.columns)[year]}: {row[year + 1]}%")
+            else:
+                trends.append(f"No change in {list(df.columns)[year]}: {row[year + 1]}%")
+        
+        # Insight about 2021
+        if row['2021 % Change'] < 0:
+            trends.append(f"2021 had a significant drop in turnover (-{row['2021 % Change']}%), likely linked to global disruptions (e.g., COVID-19 impact).")
+        
+        insights.append(f"{country}: {', '.join(trends)}")
+
+    # Country Contribution to Grand Total Growth
+    insights.append("
+Country Contribution to Grand Total Growth:")
+    grand_total_turnover = df.loc[:, '2020':'2026'].sum().sum()  # Sum up all turnovers across all countries
+    for index, row in df.iterrows():
+        country = row['Country']
+        total_turnover = row[1:8].sum()  # Total turnover for the country
+        country_percentage = (total_turnover / grand_total_turnover) * 100
+        insights.append(f"{country} contributed {country_percentage:.2f}% to the overall turnover between 2020-2026.")
+
+    return insights
+
+# Run all the analysis functions and display insights
+print("Starting EDA and Analysis...
+")
+
+# 1. Use Sweetviz for generating EDA report (HTML file)
+sweetviz_eda(df)
+
+# 2. Use D-Tale for live interactive session (comment if not needed)
+# dtale_eda(df)
+
+# 3. Run linear regression to predict future turnover (2026 based on 2020)
+regression_analysis(df)
+
+# 4. Detect outliers using Isolation Forest
+outlier_detection(df)
+
+# 5. Show Correlation Matrix Visualization
+correlation_matrix(df)
+
+# 6. Generate EDA Report with pandas_profiling
+# pandas_profiling_eda(df)  # Comment out if you don't want to use pandas_profiling
+
+# 7. Get Advanced Insights
+insights = advanced_insights(df)
+
+# Print the insights
+for insight in insights:
+    print(insight)
+</code>
+</pre>
+
+</b> <i>(Full EDA, Outliers, Correlations, Trends)</i></p>
+
+<p><a href="#table-of-contents">Back to Table of Contents</a></p></a></p>
+<h2 id="technical-implementation">7. Technical Implementation & Automation</h2>
+
+<p>This section covers the technical methodologies used in data processing, validation, visualization, and automation.</p>
+
+<h3 id="python-processing">7.1 Using Python for Data Processing and Validation</h3>
+
+<p>Python played a crucial role in ensuring data accuracy, consistency, and efficiency in analysis. It was used to:</p>
+
+<ul>
+    <li>Aggregate and clean turnover data across multiple years.</li>
+    <li>Validate missing values and handle inconsistencies.</li>
+    <li>Apply statistical methods to verify trends and outliers.</li>
+</ul>
+
+<h3 id="charts-visualization">7.2 Generating Charts and Visualizations</h3>
+
+<p>Several visualizations were created using Python to highlight turnover trends and comparisons between countries and industries. These included:</p>
+
+<ul>
+    <li>Line charts for total turnover trends.</li>
+    <li>Clustered bar charts showing sectoral changes.</li>
+    <li>Heatmaps and correlation matrices for deeper insights.</li>
+</ul>
+
+<h3 id="automation">7.3 Automating Calculations and Reporting</h3>
+
+<p>To streamline analysis, Python scripts were used to automate:</p>
+
+<ul>
+    <li>Data extraction and transformation from Excel.</li>
+    <li>Turnover prediction calculations for future years.</li>
+    <li>Chart generation and direct embedding into reports.</li>
+</ul>
+
+<p><a href="#table-of-contents">Back to Table of Contents</a></p>
+
+<!-- Section 8: Conclusions and Recommendations -->
+<h2 id="conclusions">8. Conclusions and Recommendations</h2>
+<p>This report has provided a detailed analysis of business incorporation and turnover data, revealing key trends, challenges, and opportunities within various sectors and geographic locations. Based on these findings, the following conclusions and recommendations are made.</p>
+
+<h3 id="key-findings">8.1 Summary of Key Findings</h3>
+<ul>
+    <li><b>Sector Turnover:</b> The [Sector Name] sector showed the highest turnover growth, while [Sector Name] experienced the most significant decline. This suggests [brief explanation].</li>
+    <li><b>Incorporation Trends:</b> December is consistently the least popular month for business incorporation across most industries, with some exceptions.</li>
+    <li><b>Geographic Analysis:</b> The United Kingdom dominates turnover contributions, but other regions exhibit unique growth patterns and vulnerabilities. Future predictions suggest continued growth in US, but potential challenges in Netherland.</li>
+    <li><b>Technical Implementation:</b> Python played a critical role in automating data processing, validation, and visualization, leading to more efficient and reliable analysis.</li>
+</ul>
+
+<h3 id="geographic-comparisons">8.2 Geographic and Industry Comparisons</h3>
+<p>A deeper dive into the data highlighted notable differences between geographic regions and industries:</p>
+<ul>
+    <li><b>Geographic:</b> Sweden has shown a steady increase in turnover, while Jersey has had more fluctuating results due to the weather.</li>
+    <li><b>Industry:</b> The Consultancy sector has proven to be more resilient to economic downturns compared to Retail, likely due to COVID-19.</li>
+</ul>
+
+<h3 id="future-steps">8.3 Future Considerations and Next Steps</h3>
+<p>To further enhance the insights derived from this analysis and improve decision-making, the following steps are recommended:</p>
+<ul>
+    <li><b>Expand Data Sources:</b> Incorporate additional datasets, such as macroeconomic indicators and market research reports, to provide a more comprehensive understanding of external factors influencing business performance.</li>
+    <li><b>Refine Predictive Models:</b> Explore more advanced statistical modeling techniques, such as time series analysis and machine learning algorithms, to improve the accuracy of turnover forecasts.</li>
+    <li><b>Develop Interactive Dashboard:</b> Create an interactive dashboard that allows stakeholders to explore the data in a dynamic and user-friendly manner, facilitating better-informed decision-making.</li>
+    <li><b>Conduct Sector-Specific Research:</b> Perform more in-depth research on the sectors identified as high-growth or high-risk, to understand the underlying drivers of their performance and identify opportunities for intervention.</li>
+    <li><b>Implement Real-Time Monitoring:</b> Set up a real-time monitoring system to track key performance indicators (KPIs) and identify emerging trends, enabling timely responses to changing market conditions.</li>
+</ul>
+
+<p>By implementing these recommendations, organizations can leverage the power of data analytics to gain a competitive advantage, improve operational efficiency, and make more strategic decisions.</p>
+
+<p><a href="#table-of-contents">Back to Table of Contents</a></p>
+</body>
+</html>
