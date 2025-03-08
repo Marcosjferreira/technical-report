@@ -1,148 +1,130 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Report</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: white;
-        }
-        h1 {
-            text-align: center;
-            color: #4CAF50;
-            font-size: 50px;
-            padding-bottom: 20px;
-        }
-        h2 {
-            color: #4CAF50;
-            font-size: 28px;
-            border-bottom: 2px solid #4CAF50;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        h3 {
-            color: #333;
-            font-size: 24px;
-            margin-top: 15px;
-            margin-bottom: 10px;
-        }
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        ul li {
-            margin: 10px 0;
-        }
-        ul li a {
-            text-decoration: none;
-            color: #333;
-            font-size: 18px;
-            display: block;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-        ul li a:hover {
-            background-color: #f0f0f0;
-            color: white;
-        }
-        .section {
-            margin-top: 40px;
-        }
-        .toc {
-            margin-top: 20px;
-            font-size: 18px;
-        }
-        .toc a {
-            text-decoration: none;
-            color: #333;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Title of the Report -->
-        <h1>Technical Report</h1>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #4CAF50;
+        font-size: 40px;  /* Reduced from 50px */
+        padding-bottom: 10px;
+    }
+    h2 {
+        color: #4CAF50;
+        font-size: 26px;  /* Reduced from 28px */
+        border-bottom: 2px solid #4CAF50;
+        padding-bottom: 8px;
+        margin-bottom: 20px;
+    }
+    h3 {
+        color: #333;
+        font-size: 22px;
+        margin-top: 15px;
+        margin-bottom: 8px;
+    }
+    .toc {
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .toc h2 {
+        font-size: 24px;  /* Slightly smaller */
+        padding-bottom: 8px;
+    }
+    .toc ul {
+        list-style: none;
+        padding: 0;
+        font-size: 16px;
+    }
+    .toc ul li {
+        margin-bottom: 8px;
+        padding-left: 10px;
+    }
+    .toc ul li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 17px;
+        font-weight: bold;
+        padding: 6px 8px;
+        display: inline-block;
+        border-radius: 4px;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+    .toc ul li a:hover {
+        background: #4CAF50;
+        color: white;
+    }
+    .toc ul ul {
+        margin-left: 20px;
+        font-size: 15px;
+    }
+    .toc ul ul li a {
+        font-weight: normal;
+        font-size: 15px;
+    }
+</style>
 
-        <!-- Table of Contents -->
-        <div class="section">
-    <h2 style="color: #4CAF50; font-size: 32px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">Table of Contents</h2>
-    <ul style="font-size: 18px; line-height: 1.6;">
-        <li><a href="#executive-summary" style="font-size: 22px; color: #333;font-weight: bold;">1. Executive Summary</a></li>
-        <li><a href="#data-preprocessing" style="font-size: 20px; color: #333;font-weight: bold;">2. Data Exploration and Preprocessing</a>
-            <ul style="font-size: 18px; margin-left: 20px;">
-                <li><a href="#data-understanding" style="color: #333;">Data Understanding</a></li>
-                <li><a href="#structured-environment" style="color: #333;">Creating a Structured Working Environment</a></li>
-                <li><a href="#data-quality" style="color: #333;">Initial Data Quality Assessment</a></li>
-            </ul>
-        </li>
-        <li><a href="#turnover-trends" style="font-size: 20px; color: #333;font-weight: bold;">3. Analyzing Turnover Trends Across Sectors</a>
-            <ul style="font-size: 18px; margin-left: 20px;">
-                <li><a href="#turnover-analysis" style="color: #333;">Turnover Trends Analysis</a></li>
-                <li><a href="#greatest-increase" style="color: #333;">Sectors with Greatest Increase and Decrease in Turnover</a></li>
-                <li><a href="#yearly-changes" style="color: #333;">Year-on-Year Turnover Changes</a>
-                    <ul style="font-size: 18px; margin-left: 20px;">
-                        <li><a href="#calculation-method" style="color: #333;">Calculations and Methodology</a></li>
-                        <li><a href="#refining-calculations" style="color: #333;">Refining the Approach for Year-on-Year Calculation</a></li>
-                    </ul>
-                </li>
-                <li><a href="#turnover-images" style="color: #333;">Turnover Analysis Charts</a></li>
-            </ul>
-        </li>
-        <li><a href="#farming-turnover" style="font-size: 20px; color: #333;font-weight: bold;">4. Farming Industry Turnover Analysis</a>
-            <ul style="font-size: 18px; margin-left: 20px;">
-                <li><a href="#farming-breakdown" style="color: #333;">Turnover Breakdown for Farming Industry</a></li>
-                <li><a href="#farming-methodology" style="color: #333;">Methodology and Approach</a></li>
-                <li><a href="#farming-visualization" style="color: #333;">Visualizing Farming Trends</a></li>
-                <li><a href="#farming-chart" style="color: #333;">Farming Turnover Chart</a></li>
-            </ul>
-        </li>
-        <li><a href="#incorporation-trends" style="font-size: 20px; color: #333;font-weight: bold;">5. Business Incorporation Trends</a>
-            <ul style="font-size: 18px; margin-left: 20px;">
-                <li><a href="#least-common-month" style="color: #333;">Analysis of Least Common Month for Incorporation</a></li>
-                <li><a href="#industry-trends" style="color: #333;">Industry-Specific Trends in Incorporation</a></li>
-                <li><a href="#turnover-by-industry" style="color: #333;">Turnover Trends by Industry</a></li>
-                <li><a href="#heatmap-analysis" style="color: #333;">Python Heatmap for Incorporation Trends</a></li>
-            </ul>
-        </li>
-        <li><a href="#integrated-analysis" style="font-size: 20px; color: #333;font-weight: bold;">6. Integrated Analysis of Turnover and Incorporation Trends</a>
-            <ul style="font-size: 18px; margin-left: 20px;">
-                <li><a href="#python-predictions" style="color: #333;">Python Implementation for Predictions and Visualization</a></li>
-                <li><a href="#key-insights" style="color: #333;">Key Insights</a></li>
-                <li><a href="#challenges" style="color: #333;">Challenges and Solutions</a></li>
-                <li><a href="#data-aggregation" style="color: #333;">Python Data Aggregation (Country-Level Turnover)</a></li>
-                <li><a href="#advanced-analysis" style="color: #333;">Python Advanced Analysis (EDA, Outliers, Correlation, Trends)</a></li>
-                <li><a href="#total-turnover-chart" style="color: #333;">Python Chart: Total Turnover Across All Countries</a></li>
-                <li><a href="#top-5-turnover-chart" style="color: #333;">Python Chart: Top 5 Countries' Turnover (UK vs Others)</a></li>
-            </ul>
-        </li>
-        <li><a href="#technical-implementation" style="font-size: 20px; color: #333;font-weight: bold;">7. Technical Implementation & Automation</a>
-            <ul style="font-size: 18px; margin-left: 20px;">
-                <li><a href="#python-processing" style="color: #333;">Using Python for Data Processing and Validation</a></li>
-                <li><a href="#charts-visualization" style="color: #333;">Generating Charts and Visualizations</a></li>
-                <li><a href="#automation" style="color: #333;">Automating Calculations and Reporting</a></li>
-            </ul>
-        </li>
-        <li><a href="#conclusions" style="font-size: 20px; color: #333;font-weight: bold;">8. Conclusions and Recommendations</a>
-            <ul style="font-size: 18px; margin-left: 20px;">
-                <li><a href="#key-findings" style="color: #333;">Summary of Key Findings</a></li>
-                <li><a href="#geographic-comparisons" style="color: #333;">Geographic and Industry Comparisons</a></li>
-                <li><a href="#future-steps" style="color: #333;">Future Considerations and Next Steps</a></li>
-            </ul>
-        </li>
-    </ul>
+<div class="container">
+    <!-- Title -->
+    <h1>Technical Report</h1>
+
+    <!-- Table of Contents -->
+    <div class="toc">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#executive-summary">1. Executive Summary</a></li>
+            <li><a href="#data-preprocessing">2. Data Exploration and Preprocessing</a>
+                <ul>
+                    <li><a href="#data-understanding">Data Understanding</a></li>
+                    <li><a href="#structured-environment">Creating a Structured Working Environment</a></li>
+                    <li><a href="#data-quality">Initial Data Quality Assessment</a></li>
+                </ul>
+            </li>
+            <li><a href="#turnover-trends">3. Analyzing Turnover Trends Across Sectors</a>
+                <ul>
+                    <li><a href="#turnover-analysis">Turnover Trends Analysis</a></li>
+                    <li><a href="#greatest-increase">Sectors with Greatest Increase and Decrease in Turnover</a></li>
+                    <li><a href="#yearly-changes">Year-on-Year Turnover Changes</a>
+                        <ul>
+                            <li><a href="#calculation-method">Calculations and Methodology</a></li>
+                            <li><a href="#refining-calculations">Refining the Approach for Year-on-Year Calculation</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#turnover-images">Turnover Analysis Charts</a></li>
+                </ul>
+            </li>
+            <li><a href="#farming-turnover">4. Farming Industry Turnover Analysis</a>
+                <ul>
+                    <li><a href="#farming-breakdown">Turnover Breakdown for Farming Industry</a></li>
+                    <li><a href="#farming-methodology">Methodology and Approach</a></li>
+                    <li><a href="#farming-visualization">Visualizing Farming Trends</a></li>
+                    <li><a href="#farming-chart">Farming Turnover Chart</a></li>
+                </ul>
+            </li>
+            <li><a href="#incorporation-trends">5. Business Incorporation Trends</a>
+                <ul>
+                    <li><a href="#least-common-month">Analysis of Least Common Month for Incorporation</a></li>
+                    <li><a href="#industry-trends">Industry-Specific Trends in Incorporation</a></li>
+                    <li><a href="#turnover-by-industry">Turnover Trends by Industry</a></li>
+                    <li><a href="#heatmap-analysis">Python Heatmap for Incorporation Trends</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
 <h2 id="executive-summary" style="color: #4CAF50; font-size: 24px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">1. Executive Summary</h2>
 
 <p style="font-size: 18px; line-height: 1.6;">This report presents an in-depth analysis of company incorporation trends, sector turnover changes, and geographic comparisons based on historical business registration and financial data.</p>
